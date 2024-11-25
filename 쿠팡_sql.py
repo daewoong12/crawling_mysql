@@ -1,4 +1,4 @@
-import mysql.connector
+import pymysql
 import pandas as pd
 
 # MySQL 연결 설정
@@ -14,7 +14,7 @@ csv_file = 'products.csv'
 data = pd.read_csv(csv_file)
 
 # MySQL 연결
-connection = mysql.connector.connect(
+connection = pymysql.connect(
     host=db_config['host'],
     user=db_config['user'],
     password=db_config['password'],
@@ -46,7 +46,6 @@ insert_query = """
 """
 
 # 데이터 삽입
-# iterrows() -> DataFrame의 각 행(row)을 순회하며 (index, row) 형식의 튜플을 반환
 for index, row in data.iterrows():
     cursor.execute(insert_query, (row['제품명'], row['URL'], row['가격'], row['평점']))
 
