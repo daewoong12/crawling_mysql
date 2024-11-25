@@ -46,6 +46,7 @@ insert_query = """
 """
 
 # 데이터 삽입
+# iterrows() -> pandas의 메서드로, DataFrame의 각 행(row)을 순회하며 (index, row) 형식의 튜플을 반환
 for index, row in data.iterrows():
     cursor.execute(insert_query, (row['제품명'], row['URL'], row['가격'], row['평점']))
 
